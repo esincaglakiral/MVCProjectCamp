@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concrete.About
+@{
+    ViewBag.Title = "EditAbout";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h3>Hakkımızda Bölümü Düzenleme Formu</h3>
+<br />
+
+@using (Html.BeginForm("EditAbout", "About", FormMethod.Post))
+{
+<div class="form-group">
+
+    @Html.HiddenFor(x => x.AboutID, new { @class = "form-control" })
+
+    @Html.Label("Bölüm 1")
+    @Html.TextBoxFor(x => x.AboutDetails1, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AboutDetails1)
+    <br /><br />
+    @Html.Label("Bölüm 2")
+    @Html.TextBoxFor(x => x.AboutDetails2, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AboutDetails2)
+    <br /><br />
+    @Html.Label("Resim 1")
+    @Html.TextAreaFor(x => x.AboutImage1, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AboutImage1)
+    <br /><br />
+    @Html.Label("Resim 2")
+    @Html.TextAreaFor(x => x.AboutImage2, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AboutImage2)
+
+    <br /><br />
+    <button class="btn btn-success">Güncelle</button>
+</div>
+}
+

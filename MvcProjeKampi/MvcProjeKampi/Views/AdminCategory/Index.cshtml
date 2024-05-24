@@ -1,0 +1,42 @@
+﻿@using EntityLayer.Concrete
+@model List<Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br /><br />
+<h3 style="margin-left:150px">Kategoriler Listesi</h3>
+<br />
+
+<table class="table table-bordered table-hover" style="margin-top:20px; width:80%; margin-left:150px">
+    <tr>
+        <th>#</th>
+        <th>Kategori Adı</th>
+        <th>Durum</th>
+        <th>Sil</th>
+        <th>Düzenle</th>
+        <th>Başlıklar</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <th>@item.CategoryID</th>
+        <td>@item.CategoryName</td>
+        <td>@item.CategoryStatus</td>
+
+        <td>
+            <a href="/AdminCategory/DeleteCategory/@item.CategoryID" class="btn btn-danger" style="margin-right:5px"><i class="fa fa-trash"></i> Sil</a>
+        </td>
+        <td>
+            <a href="/AdminCategory/EditCategory/@item.CategoryID" class="btn btn-info" style="margin-right:5px"><i class="fa fa-pen"></i> Düzenle</a>
+        </td>
+        <td>
+            <a href="/AdminCategory/GetCategoryHeadings/@item.CategoryID" class="btn btn-warning">Başlıklar</a>
+        </td>
+    </tr>
+    }
+
+</table>
+<a href="/AdminCategory/AddCategory/" class="btn btn-success" style="margin-left:150px">Yeni Kategori Ekle</a>
+

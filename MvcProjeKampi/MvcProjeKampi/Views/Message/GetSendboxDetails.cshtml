@@ -1,0 +1,82 @@
+﻿﻿@model EntityLayer.Concrete.Message
+@{
+    ViewBag.Title = "GetSendboxDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+
+<body class="hold-transition sidebar-mini">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Gönderilen Mesaj Detayları</h1>
+                </div>
+
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                @Html.Action("MessageListMenu", "Contact")
+                <!-- /.col -->
+
+                <div class="col-md-9">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h2 class="card-title">Mesaj İçeriği</h2>
+
+                            <div class="card-tools">
+                                <a class="btn btn-danger" href="/Message/Sendbox/"> <i class="fas fa-reply"></i>@Html.ValueFor(x => x.Subject)</a>
+
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <div class="mailbox-read-info">
+                                <h5><b>Konu:</b> @Html.ValueFor(x => x.Subject)</h5>
+                                <br />
+                                <h6>
+                                    <b>Kimden:</b> @Html.ValueFor(x => x.SenderMail) <br />
+                                    <b>Alıcı:</b> @Html.ValueFor(x => x.ReceiverMail)
+                                    <span class="mailbox-read-time float-right">@DateTime.Parse(Html.DisplayFor(x => x.MessageDate).ToString()).ToShortDateString();</span>
+                                </h6>
+                            </div>
+                            <!-- /.mailbox-read-info -->
+                            <!-- /.mailbox-controls -->
+                            <div class="mailbox-read-message">
+                                <p>
+                                    @Html.ValueFor(x => x.MessageContent)
+                                </p>
+                            </div>
+                            <!-- /.mailbox-read-message -->
+                        </div>
+                        <!-- /.card-body -->
+                        <!-- /.card-footer -->
+                        <div class="card-footer">
+                            <div class="float-right">
+                                <button type="button" class="btn btn-default"><i class="fas fa-reply"></i> Reply</button>
+                                <button type="button" class="btn btn-default"><i class="fas fa-share"></i> Forward</button>
+                            </div>
+                            <a href="@Url.Action("DeleteSendboxDetailsMessage", "Message", new { id = Model.MessageID })" class="btn btn-default">
+                                <i class="far fa-trash-alt"></i> Mesajı Sil
+                            </a>
+                            <button type="button" class="btn btn-default"><i class="fas fa-print"></i> Print</button>
+                        </div>
+                        <!-- /.card-footer -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+    </section>
+
+    </body>
+</html>

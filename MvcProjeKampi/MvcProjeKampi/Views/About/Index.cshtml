@@ -1,0 +1,39 @@
+﻿﻿@using EntityLayer.Concrete
+@model List<About>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h2>Hakkımızda Sayfası</h2>
+
+<table class="table table-striped projects table-hover">
+ 
+        <tr>
+            <th>#</th>
+            <th class="col-4">Açıklama 1</th>
+            <th class="col-4">Açıklama 2</th>
+            <th>Görsel 1</th>
+            <th>Görsel 1</th>
+            <th>İşlemler</th>
+        </tr>
+  
+    <tbdoy>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.AboutID</th>
+
+                <td>@item.AboutDetails1</td>
+                <td >@item.AboutDetails2</td>
+                <td><img src="@item.AboutImage1"  style="width:75px; height:75px"/></td>
+                <td><img src="@item.AboutImage2" style="width:75px; height:75px"/></td>
+                <td>
+                    <a href="/About/DeleteAbout/@item.AboutID" class="btn btn-danger"><i class="fas fa-trash"></i> Sil</a>
+                    <a href="/About/EditAbout/@item.AboutID" class="btn btn-warning"><i class="fas fa-edit"></i> Düzenle</a>
+                </td>
+            </tr>
+        }
+    </tbdoy>
+</table>
+
+@Html.Action("AboutPartial", "About")
